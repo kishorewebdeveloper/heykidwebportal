@@ -1,0 +1,103 @@
+<main>
+  <section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card bg-secondary shadow border-0">
+            
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>sign in with credentials</small>
+              </div>
+              <form [formGroup]="loginForm">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="h5 modal-title text-center">
+                            <h4 class="mt-2">
+                                <div>Welcome back,</div>
+                                <span>Please sign in to your account below.</span>
+                            </h4>
+                        </div>
+                        <div aria-describedby="exampleInputGroup1__BV_description_"
+                             class="form-group">
+                            <div>
+                                <input formControlName="username" type="email" placeholder="Enter email..."
+                                       aria-required="true" class="form-control"
+                                       [ngClass]="{ 'is-invalid': (loginFormSubmitted || lf.username.touched) && lf.username.invalid,
+                                    'is-valid': loginFormSubmitted && !lf.username.invalid }"
+                                       required>
+                                <small tabindex="-1" class="form-text text-muted">
+                                    We'll never share your email with anyone else.
+                                </small>
+                                <div *ngIf="(loginFormSubmitted || lf.username.touched) && (lf.username.invalid || lf.username.errors?.required)"
+                                     class="help-block mt-1 text-danger">
+                                    <i class="ft-alert-circle align-middle">
+                                    </i> Email is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <input formControlName="password" type="password" placeholder="Enter password..." aria-required="true"
+                                       class="form-control" [ngClass]="{ 'is-invalid': (loginFormSubmitted || lf.password.touched) && lf.password.invalid,
+                                    'is-valid': loginFormSubmitted && !lf.password.invalid }"
+                                       required>
+                                <div *ngIf="(loginFormSubmitted || lf.password.touched) && (lf.password.invalid || lf.password.errors?.required)"
+                                     class="help-block mt-1 text-danger">
+                                    <i class="ft-alert-circle align-middle"></i> Password is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+                        <h6 class="mb-0">
+                            No account?
+                            <a [routerLink]="'/register'" class="text-primary">Sign up now</a>
+                        </h6>
+
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="float-left">
+                            <a [routerLink]="'/forgotpassword'" class="btn-lg btn btn-link">
+                                Forgot Password?
+                            </a>
+                        </div>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary btn-lg" (click)="onLogin()">
+                                <i class="ft-log-in mr-1"> </i>
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a href="javascript:void(0)" class="text-light">
+                <small>Forgot password?</small>
+              </a>
+            </div>
+            <div class="col-6 text-right">
+              <a href="javascript:void(0)" (click)="registerClick()"  class="text-light">
+                <small>Create new account</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
