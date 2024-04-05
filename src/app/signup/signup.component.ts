@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
 
             this.userService.saveUser(userData).subscribe((result) => {
                 if (result) {
-                   alert("user registered");
+                //    alert("user registered");
                 };
             });
         }
