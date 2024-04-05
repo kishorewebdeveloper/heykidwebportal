@@ -1,6 +1,7 @@
 import { environment } from '../environments/environment';
 import { Injectable } from '@angular/core';
 import { UserSession } from '../models/usersession';
+import { Subject } from 'rxjs';
 
 @Injectable()
 
@@ -8,6 +9,7 @@ export class SessionService {
 
     session = new UserSession();
     localStorageSessionKey: string;
+    isAuthenticated = new Subject<boolean>();
 
     constructor() {
         this.localStorageSessionKey = 'EventManagement-' + environment.apiBaseUrl + '-AuthData';
@@ -16,11 +18,13 @@ export class SessionService {
     create(session: any) {// jshint ignore:line
         this.setLocalStorageProperties(session);
         this.setSessionProperties(session);
+        this.isAuthenticated.next(true);
     }
 
     destroy() {// jshint ignore:line
         this.setLocalStorageProperties(new UserSession());
         this.setSessionProperties(new UserSession());
+        this.isAuthenticated.next(false);
     }
 
     load() { // jshint ignore:line

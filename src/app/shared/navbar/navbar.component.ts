@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
     public isCollapsed = true;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
+    isAuthenticated:boolean=false;
 
     constructor(public location: Location, private router: Router, private sessionService: SessionService, private authService: AuthenticationService,) {
     }
@@ -35,6 +36,10 @@ export class NavbarComponent implements OnInit {
         });
         this.location.subscribe((ev: PopStateEvent) => {
             this.lastPoppedUrl = ev.url;
+        });
+
+        this.sessionService.isAuthenticated.subscribe((data:boolean)=>{
+            this.isAuthenticated=data;
         });
         // debugger;
         // const test = this.sessionService.getUserName();
@@ -68,5 +73,8 @@ export class NavbarComponent implements OnInit {
     logoutClick() {
         this.authService.logOut();
         this.router.navigate(['/login']);
+    }
+
+    viewCartClick() {
     }
 }
